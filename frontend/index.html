@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Management System</title>
+</head>
+<body>
+    <h1>Student Information Management System</h1>
+
+    <h2>Add Student</h2>
+    <form id="studentForm">
+        <input type="text" id="first_name" placeholder="First Name" required>
+        <input type="text" id="last_name" placeholder="Last Name" required>
+        <input type="date" id="dob" placeholder="Date of Birth" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="phone_number" placeholder="Phone Number" required>
+        <button type="submit">Add Student</button>
+    </form>
+
+    <h2>Add Course</h2>
+    <form id="courseForm">
+        <input type="text" id="course_name" placeholder="Course Name" required>
+        <input type="text" id="course_code" placeholder="Course Code" required>
+        <input type="number" id="credits" placeholder="Credits" required>
+        <button type="submit">Add Course</button>
+    </form>
+
+    <h2>Enroll Student in Course</h2>
+    <form id="enrollmentForm">
+        <input type="number" id="student_id" placeholder="Student ID" required>
+        <input type="number" id="course_id" placeholder="Course ID" required>
+        <input type="text" id="grade" placeholder="Grade (e.g., A)" required>
+        <button type="submit">Enroll</button>
+    </form>
+
+    <script>
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const studentData = {
+                first_name: document.getElementById('first_name').value,
+                last_name: document.getElementById('last_name').value,
+                date_of_birth: document.getElementById('dob').value,
+                email: document.getElementById('email').value,
+                phone_number: document.getElementById('phone_number').value
+            };
+
+            fetch('http://localhost:3000/students', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(studentData)
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('courseForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const courseData = {
+                course_name: document.getElementById('course_name').value,
+                course_code: document.getElementById('course_code').value,
+                credits: document.getElementById('credits').value
+            };
+
+            fetch('http://localhost:3000/courses', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(courseData)
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('enrollmentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const enrollmentData = {
+                student_id: document.getElementById('student_id').value,
+                course_id: document.getElementById('course_id').value,
+                grade: document.getElementById('grade').value
+            };
+
+            fetch('http://localhost:3000/enrollments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(enrollmentData)
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
