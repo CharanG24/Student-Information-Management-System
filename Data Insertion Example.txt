@@ -1,0 +1,23 @@
+-- Insert Students
+INSERT INTO Students (student_id, first_name, last_name, date_of_birth, email, phone_number)
+VALUES (1, 'John', 'Doe', '2000-01-15', 'johndoe@example.com', '123-456-7890');
+
+INSERT INTO Students (student_id, first_name, last_name, date_of_birth, email, phone_number)
+VALUES (2, 'Jane', 'Smith', '1999-07-23', 'janesmith@example.com', '987-654-3210');
+
+-- Insert Courses
+INSERT INTO Courses (course_id, course_name, course_code, credits)
+VALUES (1, 'Introduction to Programming', 'CS101', 3);
+
+INSERT INTO Courses (course_id, course_name, course_code, credits)
+VALUES (2, 'Data Structures', 'CS102', 4);
+
+-- Insert Enrollments
+INSERT INTO Enrollments (enrollment_id, student_id, course_id, grade)
+VALUES (1, 1, 1, 'A');
+
+INSERT INTO Enrollments (enrollment_id, student_id, course_id, grade)
+VALUES (2, 1, 2, 'B');
+
+INSERT INTO Enrollments (enrollment_id, student_id, course_id, grade)
+VALUES (3, 2, 1, 'C');
